@@ -1,0 +1,17 @@
+# Dependencias y artefactos
+node_modules/
+dist/
+
+# Logs y entorno
+*.log
+.env
+.env.*
+
+# Editor y OS
+.DS_Store
+*.swp
+.idea/
+.vscode/
+
+# TypeScript / Vite
+*.tsbuildinfo

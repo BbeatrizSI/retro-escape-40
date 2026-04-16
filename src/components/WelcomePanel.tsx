@@ -1,0 +1,21 @@
+type Props = {
+  onStart: () => void;
+};
+
+export function WelcomePanel({ onStart }: Props) {
+  return (
+    <div className="relative z-20 flex flex-1 flex-col justify-center space-y-4 pt-2">
+      <p className="rounded-lg border border-[#7fff75]/45 bg-black/75 p-3 leading-relaxed backdrop-blur-sm">
+        Bienvenida, agente especial. Para desbloquear tu sorpresa, activa el sistema retro y supera unos retos con
+        humor inteligente.
+      </p>
+      <button
+        type="button"
+        className="w-full rounded-xl border border-[#7fff75] bg-[#7fff75]/15 px-4 py-4 text-base font-bold uppercase tracking-wider text-[#7fff75]"
+        onClick={onStart}
+      >
+        Iniciar conexion vintage
+      </button>
+    </div>
+  );
+}
