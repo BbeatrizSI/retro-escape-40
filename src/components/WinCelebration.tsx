@@ -64,10 +64,10 @@ export function WinCelebration({ active }: Props) {
           <p className="mt-3 leading-relaxed text-[#7fff75]">
             Premio final detectado:
             <br />
-            <span className="font-bold">Un MacBook Air te espera en el mundo real.</span>
+            <span className="font-bold">Mira debajo de tu cama</span>
           </p>
           <p className="mt-2 text-sm text-[#7fff75]/75">
-            Mision completada por la reina de la familia, planos perfectos y economia con estilo.
+            Mision completada por la reina de la familia, planos perfectos y economía con estilo.
           </p>
         </div>
       </div>

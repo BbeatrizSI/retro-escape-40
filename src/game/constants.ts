@@ -58,9 +58,9 @@ export const CHALLENGES: Challenge[] = [
   },
   {
     kind: "text",
-    title: "RETO 3 - Mision familia",
+    title: "RETO 3 - Misión gente",
     prompt: "Tu superpoder favorito: estar con la ______.",
-    acceptedAnswers: ["familia"],
+    acceptedAnswers: ["familia", "gente"],
     hint: "Pista: siempre es el centro de todo."
   },
   {
