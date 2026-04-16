@@ -14,7 +14,7 @@ export function WelcomePanel({ onStart }: Props) {
         className="w-full rounded-xl border border-[#7fff75] bg-[#7fff75]/15 px-4 py-4 text-base font-bold uppercase tracking-wider text-[#7fff75]"
         onClick={onStart}
       >
-        Iniciar conexion vintage
+        Iniciar actualización
       </button>
     </div>
   );
