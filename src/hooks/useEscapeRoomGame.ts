@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { BOOT_MESSAGES, CHALLENGES, SUDOKU_INITIAL, SUDOKU_SIZE, SUDOKU_SOLUTION } from "../game/constants";
+import { formatUnlockClock, isStepUnlocked } from "../game/schedule";
 import { buildSudokuFixedMask, gridsEqual } from "../game/sudokuModel";
 import type { Challenge } from "../game/types";
 import { useRetroAudio } from "./useRetroAudio";
@@ -83,6 +84,11 @@ export function useEscapeRoomGame() {
 
   const checkTextAnswer = useCallback(() => {
     if (!currentChallenge || currentChallenge.kind !== "text") return;
+    if (!isStepUnlocked(step)) {
+      beep(200, 0.15, "sawtooth");
+      setFeedback(`Este reto abre a las ${formatUnlockClock(step)} (hora local).`);
+      return;
+    }
     const clean = input.trim().toLowerCase();
     const ok = currentChallenge.acceptedAnswers.some((a) => a.toLowerCase() === clean);
     if (ok) {
@@ -95,10 +101,15 @@ export function useEscapeRoomGame() {
       beep(200, 0.2, "sawtooth");
       setFeedback(`Ups... ${currentChallenge.hint}`);
     }
-  }, [currentChallenge, input, beep, advanceOrWin]);
+  }, [currentChallenge, step, input, beep, advanceOrWin]);
 
   const checkSudoku = useCallback(() => {
     if (!currentChallenge || currentChallenge.kind !== "sudoku") return;
+    if (!isStepUnlocked(step)) {
+      beep(200, 0.15, "sawtooth");
+      setFeedback(`El sudoku se desbloquea a las ${formatUnlockClock(step)}.`);
+      return;
+    }
     if (sudokuGrid.some((n) => n === 0)) {
       beep(200, 0.15, "sawtooth");
       setFeedback("Faltan celdas. Rellena todo el tablero.");
@@ -114,10 +125,11 @@ export function useEscapeRoomGame() {
       beep(200, 0.25, "sawtooth");
       setFeedback("Hay errores. Revisa filas, columnas y bloques 2x3.");
     }
-  }, [currentChallenge, sudokuGrid, beep, advanceOrWin]);
+  }, [currentChallenge, step, sudokuGrid, beep, advanceOrWin]);
 
   const onSudokuCellChange = useCallback(
     (index: number, raw: string) => {
+      if (!isStepUnlocked(step)) return;
       if (fixedMask[index]) return;
       if (!sudokuTimerActive && raw !== "") {
         setSudokuTimerActive(true);
@@ -140,7 +152,7 @@ export function useEscapeRoomGame() {
         return next;
       });
     },
-    [fixedMask, sudokuTimerActive]
+    [fixedMask, sudokuTimerActive, step]
   );
 
   return {
