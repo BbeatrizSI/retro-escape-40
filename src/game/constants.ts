@@ -65,8 +65,8 @@ export const CHALLENGES: Challenge[] = [
   },
   {
     kind: "text",
-    title: "RETO 4 - Mini jefa de 4 anos",
-    prompt: "Completa el codigo secreto: con nuestra hija de 4 anos, cada dia es una ____.",
+    title: "RETO 4 - Mini jefa",
+    prompt: "Completa el codigo secreto: con nuestra hija de 4 años, cada dia es una ____.",
     acceptedAnswers: ["aventura", "locura"],
     hint: "Pista: nunca hay aburrimiento en casa."
   },

@@ -53,7 +53,7 @@ export function ScheduleGate({ step, challenge, children }: Props) {
           Falta <span className="font-mono font-bold text-amber-300">{countdown}</span>.
         </p>
         <p className="mt-3 text-xs leading-relaxed text-[#7fff75]/65">
-          El final (sudoku) solo está disponible desde las {formatUnlockClock(4)}: hasta entonces puedes avanzar en los
+          El final solo está disponible desde las {formatUnlockClock(4)}: hasta entonces puedes avanzar en los
           retos anteriores cuando toque cada hora.
         </p>
       </div>

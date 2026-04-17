@@ -8,7 +8,7 @@ export function WelcomePanel({ onStart, onEnableNotifications }: Props) {
     <div className="relative z-20 flex flex-1 flex-col justify-center space-y-4 pt-2">
       <p className="rounded-lg border border-[#7fff75]/45 bg-black/75 p-3 leading-relaxed backdrop-blur-sm">
         Bienvenida, agente especial. Para desbloquear tu sorpresa, activa el sistema retro y supera unos retos con
-        humor inteligente. Los retos se abren a horas concretas del día; el último (sudoku) llega a las 19:00.
+        humor inteligente. Los retos se abren a horas concretas del día; el último llega a las 19:00.
       </p>
       <p className="text-xs leading-relaxed text-[#7fff75]/65">
         Puedes instalar la web como app: en Chrome/Android, menú &quot;Añadir a pantalla de inicio&quot;. Las avisos
