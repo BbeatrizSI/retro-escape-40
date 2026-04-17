@@ -6,6 +6,23 @@ export const BOOT_MESSAGES = [
   "Cargando felicidad premium... [OK]",
   "Consultando al sombrerero loco... [HECHO]",
   "Ajustando modo familia y risas... [OK]",
+  "Sincronizando relojes con el despertador del universo... [WAIT]",
+  "Descargando cafeina virtual (0 kcal)... [OK]",
+  "Indexando abrazos en base de datos cálida... [HECHO]",
+  "Compilando modulos: paciencia, ironia, cariño... [OK]",
+  "Verificando que el 40 rima con 'mítica' (poetica interna)... [DEBATE]",
+  "Instalando parches anti-mal humor... [OK]",
+  "Calibrando brillo nostalgico del monitor verde... [OK]",
+  "Enrutando paquetes de risa por TCP/IP... [OK]",
+  "Desfragmentando la semana laboral (solo simbólico)... [SKIP]",
+  "Actualizando drivers de miradas complices... [OK]",
+  "Probando modem 56k de emociones... [BRRR]",
+  "Escaneando virus... solo encontramos ternura... [CLEAN]",
+  "Haciendo backup de recuerdos en cinta imaginaria... [OK]",
+  "Optimizando cache de planes futuros (MacBookAir.exe)... [OK]",
+  "Negociando con el firewall del ego... [LISTO]",
+  "Importando playlist 'Hits del salon'... [OK]",
+  "Subiendo prioridad del proceso 'celebracion'... [OK]",
   "Desbloqueando nivel: Cumple 40 legendario..."
 ];
 
@@ -51,7 +68,7 @@ export const CHALLENGES: Challenge[] = [
   },
   {
     kind: "text",
-    title: "RETO 2 - Economia ninja",
+    title: "RETO 2 - Economía ninja",
     prompt: "Completa: ahorro + cabeza fria = ____ familiar",
     acceptedAnswers: ["paz", "tranquilidad"],
     hint: "Pista: tres letras o su sinonimo largo."
