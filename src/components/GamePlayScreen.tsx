@@ -54,7 +54,7 @@ export function GamePlayScreen({
   sudokuSecondsLeft
 }: Props) {
   const timerLabel = isSudoku
-    ? `Tiempo: ${sudokuTimerActive ? sudokuSecondsLeft : 60}s max (cuenta al escribir la primera celda editable)`
+    ? `Tiempo: ${sudokuTimerActive ? sudokuSecondsLeft : 60}s max`
     : null;
 
   return (
