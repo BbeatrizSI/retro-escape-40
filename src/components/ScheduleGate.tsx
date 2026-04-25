@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState, type ReactNode } from "react";
+import { CHALLENGES } from "../game/constants";
 import type { Challenge } from "../game/types";
 import { formatUnlockClock, getStepUnlockDate, isStepUnlocked, msUntilStepUnlock } from "../game/schedule";
 
@@ -42,6 +43,7 @@ export function ScheduleGate({ step, challenge, children }: Props) {
 
   const clock = formatUnlockClock(step);
   const countdown = formatCountdown(msUntilStepUnlock(step, now));
+  const finalStepIndex = CHALLENGES.length - 1;
 
   return (
     <div className="relative z-20 flex flex-1 flex-col justify-center space-y-4">
@@ -53,7 +55,7 @@ export function ScheduleGate({ step, challenge, children }: Props) {
           Falta <span className="font-mono font-bold text-amber-300">{countdown}</span>.
         </p>
         <p className="mt-3 text-xs leading-relaxed text-[#7fff75]/65">
-          El final solo está disponible desde las {formatUnlockClock(4)}: hasta entonces puedes avanzar en los
+          El final solo está disponible desde las {formatUnlockClock(finalStepIndex)}: hasta entonces puedes avanzar en los
           retos anteriores cuando toque cada hora.
         </p>
       </div>

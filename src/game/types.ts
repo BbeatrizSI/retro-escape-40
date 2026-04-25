@@ -4,6 +4,14 @@ export type TextChallenge = {
   prompt: string;
   hint: string;
   acceptedAnswers: string[];
+  swatchColor?: string;
+};
+
+export type MoodChallenge = {
+  kind: "mood";
+  title: string;
+  prompt: string;
+  options: string[];
 };
 
 export type SudokuChallenge = {
@@ -13,4 +21,14 @@ export type SudokuChallenge = {
   hint: string;
 };
 
-export type Challenge = TextChallenge | SudokuChallenge;
+export type SequenceChallenge = {
+  kind: "sequence";
+  title: string;
+  prompt: string;
+  hint: string;
+  sequence: number[];
+  options: number[];
+  answer: number;
+};
+
+export type Challenge = MoodChallenge | TextChallenge | SequenceChallenge | SudokuChallenge;

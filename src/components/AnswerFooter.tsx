@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 
 /** RETO 4 en la lista de desafíos (índice 0-based). */
-const RETO_4_STEP_INDEX = 3;
+const RETO_4_STEP_INDEX = 4;
 const OK_DODGES_BEFORE_SUBMIT = 2;
 
 type Props = {
-  mode: "text" | "sudoku";
+  mode: "text" | "mood" | "sequence" | "sudoku";
   input: string;
   onInputChange: (v: string) => void;
+  canConfirmMood?: boolean;
+  onConfirmMood?: () => void;
   onSubmitText: () => void;
   onSubmitSudoku: () => void;
   /** Paso actual del juego; solo en RETO 4 el botón OK “huye” dos veces. */
@@ -18,6 +20,8 @@ export function AnswerFooter({
   mode,
   input,
   onInputChange,
+  canConfirmMood = false,
+  onConfirmMood,
   onSubmitText,
   onSubmitSudoku,
   gameStep = -1
@@ -55,7 +59,7 @@ export function AnswerFooter({
         >
           Comprobar sudoku
         </button>
-      ) : (
+      ) : mode === "text" ? (
         <div className={`gap-2 ${footerRowClass}`}>
           <input
             value={input}
@@ -68,6 +72,24 @@ export function AnswerFooter({
             type="button"
             onClick={handleOkClick}
             className={`min-h-[48px] shrink-0 rounded-lg border border-[#7fff75] bg-[#7fff75]/20 px-4 text-base font-bold text-[#7fff75] ${isReto4 && okDodgeCount >= 2 ? "order-1 w-full sm:w-auto" : ""}`}
+          >
+            OK
+          </button>
+        </div>
+      ) : mode === "sequence" ? (
+        <p className="rounded-lg border border-[#7fff75]/30 bg-black/60 px-3 py-2 text-sm text-[#7fff75]/85">
+          Elige una opción para completar la serie lógica.
+        </p>
+      ) : (
+        <div className="space-y-2">
+          <p className="rounded-lg border border-[#7fff75]/30 bg-black/60 px-3 py-2 text-sm text-[#7fff75]/85">
+            Elige el botón que mejor describa cómo te encuentras y pulsa OK.
+          </p>
+          <button
+            type="button"
+            disabled={!canConfirmMood}
+            onClick={() => onConfirmMood?.()}
+            className="w-full rounded-lg border border-[#7fff75] bg-[#7fff75]/20 py-3 text-base font-bold text-[#7fff75] disabled:cursor-not-allowed disabled:opacity-45"
           >
             OK
           </button>

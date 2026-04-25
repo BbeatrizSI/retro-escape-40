@@ -64,10 +64,10 @@ export function WinCelebration({ active }: Props) {
           <p className="mt-3 leading-relaxed text-[#7fff75]">
             Premio final detectado:
             <br />
-            <span className="font-bold">Mira debajo de tu cama</span>
+            <span className="font-bold">Mira lo que se está cociendo en el horno</span>
           </p>
           <p className="mt-2 text-sm text-[#7fff75]/75">
-            Mision completada por la reina de la familia, planos perfectos y economía con estilo.
+            Mision completada por la reina de la casa, planos perfectos y economía con estilo.
           </p>
         </div>
       </div>

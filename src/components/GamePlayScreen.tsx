@@ -1,7 +1,9 @@
 import type { Challenge } from "../game/types";
 import { AnswerFooter } from "./AnswerFooter";
 import { ChallengePromptPanel } from "./ChallengePromptPanel";
+import { MoodChallengePanel } from "./MoodChallengePanel";
 import { ProgressStrip } from "./ProgressStrip";
+import { SequenceChallengePanel } from "./SequenceChallengePanel";
 import { SudokuBoard } from "./SudokuBoard";
 
 type Props = {
@@ -9,11 +11,18 @@ type Props = {
   gameStep: number;
   progressPct: number;
   feedback: string;
+  feedbackTone: "normal" | "alert";
   input: string;
   onInputChange: (v: string) => void;
+  onSubmitMood: (value: string) => void;
+  onConfirmMood: () => void;
+  selectedMood: string | null;
   onSubmitText: () => void;
   onSubmitSudoku: () => void;
+  onSubmitSequence: (value: number) => void;
+  isMood: boolean;
   isSudoku: boolean;
+  isSequence: boolean;
   sudokuGrid: number[];
   fixedMask: boolean[];
   onSudokuCellChange: (index: number, raw: string) => void;
@@ -26,11 +35,18 @@ export function GamePlayScreen({
   gameStep,
   progressPct,
   feedback,
+  feedbackTone,
   input,
   onInputChange,
+  onSubmitMood,
+  onConfirmMood,
+  selectedMood,
   onSubmitText,
   onSubmitSudoku,
+  onSubmitSequence,
+  isMood,
   isSudoku,
+  isSequence,
   sudokuGrid,
   fixedMask,
   onSudokuCellChange,
@@ -46,14 +62,37 @@ export function GamePlayScreen({
       <div className="space-y-4 overflow-y-auto pb-3">
         <ProgressStrip progressPct={progressPct} />
         <ChallengePromptPanel title={challenge.title} prompt={challenge.prompt} sudokuTimerLabel={timerLabel} />
+        {challenge.kind === "text" && challenge.swatchColor ? (
+          <div
+            className="h-24 w-[full] mt-4 rounded-md border-2 border-[#7fff75]/60 shadow-[0_0_14px_rgba(127,255,117,0.25)]"
+            style={{ backgroundColor: challenge.swatchColor }}
+            aria-label="Muestra de color del reto"
+          />
+        ) : null}
+        {isMood && challenge.kind === "mood" ? (
+          <MoodChallengePanel options={challenge.options} selectedOption={selectedMood} onSelectOption={onSubmitMood} />
+        ) : null}
+        {isSequence && challenge.kind === "sequence" ? (
+          <SequenceChallengePanel
+            sequence={challenge.sequence}
+            options={challenge.options}
+            onSelectOption={onSubmitSequence}
+          />
+        ) : null}
         {isSudoku ? <SudokuBoard grid={sudokuGrid} fixedMask={fixedMask} onCellChange={onSudokuCellChange} /> : null}
-        <p className="min-h-6 text-sm text-[#7fff75]/90">{feedback}</p>
+        <p
+          className={`min-h-6 whitespace-pre-wrap text-sm ${feedbackTone === "alert" ? "text-red-300" : "text-[#7fff75]/90"}`}
+        >
+          {feedback}
+        </p>
       </div>
       <AnswerFooter
-        mode={isSudoku ? "sudoku" : "text"}
+        mode={isSudoku ? "sudoku" : isSequence ? "sequence" : isMood ? "mood" : "text"}
         gameStep={gameStep}
         input={input}
         onInputChange={onInputChange}
+        canConfirmMood={selectedMood !== null}
+        onConfirmMood={onConfirmMood}
         onSubmitText={onSubmitText}
         onSubmitSudoku={onSubmitSudoku}
       />

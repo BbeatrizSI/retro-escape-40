@@ -1,6 +1,4 @@
-import { useEffect } from "react";
 import { useEscapeRoomGame } from "../hooks/useEscapeRoomGame";
-import { scheduleUnlockNotifications, requestNotificationsAndSchedule } from "../utils/pwaNotifications";
 import { AppHeader } from "./AppHeader";
 import { BootSequencePanel } from "./BootSequencePanel";
 import { GamePlayScreen } from "./GamePlayScreen";
@@ -23,10 +21,7 @@ export function EscapeRoomApp() {
           <AppHeader />
 
           {!game.started ? (
-            <WelcomePanel
-              onStart={game.startGame}
-              onEnableNotifications={() => requestNotificationsAndSchedule()}
-            />
+            <WelcomePanel onStart={game.startGame} />
           ) : game.bootIndex < game.bootMessages.length ? (
             <BootSequencePanel messages={game.bootMessages} visibleCount={game.bootIndex} />
           ) : game.currentChallenge ? (
@@ -36,11 +31,18 @@ export function EscapeRoomApp() {
                 gameStep={game.step}
                 progressPct={game.progress}
                 feedback={game.feedback}
+                feedbackTone={game.feedbackTone}
                 input={game.input}
                 onInputChange={game.setInput}
+                onSubmitMood={game.checkMoodAnswer}
+                onConfirmMood={game.confirmMoodAndAdvance}
+                selectedMood={game.selectedMood}
                 onSubmitText={game.checkTextAnswer}
                 onSubmitSudoku={game.checkSudoku}
+                onSubmitSequence={game.checkSequenceAnswer}
+                isMood={game.isMoodStep}
                 isSudoku={game.isSudokuStep}
+                isSequence={game.isSequenceStep}
                 sudokuGrid={game.sudokuGrid}
                 fixedMask={game.fixedMask}
                 onSudokuCellChange={game.onSudokuCellChange}
