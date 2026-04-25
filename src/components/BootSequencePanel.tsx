@@ -16,7 +16,7 @@ export function BootSequencePanel({ messages, visibleCount }: Props) {
   }, [visibleCount]);
 
   return (
-    <div className="relative z-20 flex min-h-[52dvh] flex-1 flex-col sm:min-h-[58dvh]">
+    <div className="relative z-20 flex min-h-0 flex-1 flex-col">
       <div className="flex min-h-0 flex-1 flex-col overflow-hidden rounded-lg border border-[#7fff75]/35 bg-black/80 shadow-[inset_0_0_24px_rgba(0,0,0,0.45)] backdrop-blur-sm">
         <div
           ref={scrollRef}

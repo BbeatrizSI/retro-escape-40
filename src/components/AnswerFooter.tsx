@@ -50,7 +50,7 @@ export function AnswerFooter({
   };
 
   return (
-    <div className="mt-auto border-t border-[#7fff75]/30 bg-black/75 pt-3 backdrop-blur-sm">
+    <div className="border-t border-transparent pt-1">
       {mode === "sudoku" ? (
         <button
           type="button"

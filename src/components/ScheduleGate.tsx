@@ -39,14 +39,16 @@ export function ScheduleGate({ step, challenge, children }: Props) {
     return () => window.clearTimeout(id);
   }, [locked, step, now]);
 
-  if (!locked) return <>{children}</>;
+  if (!locked) {
+    return <div className="relative z-20 flex min-h-0 flex-1 flex-col">{children}</div>;
+  }
 
   const clock = formatUnlockClock(step);
   const countdown = formatCountdown(msUntilStepUnlock(step, now));
   const finalStepIndex = CHALLENGES.length - 1;
 
   return (
-    <div className="relative z-20 flex flex-1 flex-col justify-center space-y-4">
+    <div className="relative z-20 flex min-h-0 flex-1 flex-col justify-center overflow-y-auto overscroll-contain py-2">
       <div className="rounded-lg border border-amber-400/60 bg-black/80 p-4 backdrop-blur-sm">
         <p className="text-xs uppercase tracking-widest text-amber-300/90">Reto programado</p>
         <h2 className="mt-2 font-mono text-lg font-bold text-[#7fff75]">{challenge.title}</h2>

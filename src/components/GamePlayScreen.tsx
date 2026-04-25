@@ -58,13 +58,13 @@ export function GamePlayScreen({
     : null;
 
   return (
-    <div className="relative z-20 flex flex-1 flex-col">
-      <div className="space-y-4 overflow-y-auto pb-3">
+    <div className="relative z-20 flex min-h-0 flex-1 flex-col">
+      <div className="min-h-0 flex-1 space-y-4 overflow-y-auto overscroll-contain pb-2">
         <ProgressStrip progressPct={progressPct} />
         <ChallengePromptPanel title={challenge.title} prompt={challenge.prompt} sudokuTimerLabel={timerLabel} />
         {challenge.kind === "text" && challenge.swatchColor ? (
           <div
-            className="h-24 w-[full] mt-4 rounded-md border-2 border-[#7fff75]/60 shadow-[0_0_14px_rgba(127,255,117,0.25)]"
+            className="mt-4 h-24 w-[full] shrink-0 rounded-md border-2 border-[#7fff75]/60 shadow-[0_0_14px_rgba(127,255,117,0.25)]"
             style={{ backgroundColor: challenge.swatchColor }}
             aria-label="Muestra de color del reto"
           />
@@ -86,16 +86,18 @@ export function GamePlayScreen({
           {feedback}
         </p>
       </div>
-      <AnswerFooter
-        mode={isSudoku ? "sudoku" : isSequence ? "sequence" : isMood ? "mood" : "text"}
-        gameStep={gameStep}
-        input={input}
-        onInputChange={onInputChange}
-        canConfirmMood={selectedMood !== null}
-        onConfirmMood={onConfirmMood}
-        onSubmitText={onSubmitText}
-        onSubmitSudoku={onSubmitSudoku}
-      />
+      <div className="shrink-0 border-t border-[#7fff75]/25 bg-black/90 pt-2 shadow-[0_-10px_28px_rgba(0,0,0,0.55)] backdrop-blur-md">
+        <AnswerFooter
+          mode={isSudoku ? "sudoku" : isSequence ? "sequence" : isMood ? "mood" : "text"}
+          gameStep={gameStep}
+          input={input}
+          onInputChange={onInputChange}
+          canConfirmMood={selectedMood !== null}
+          onConfirmMood={onConfirmMood}
+          onSubmitText={onSubmitText}
+          onSubmitSudoku={onSubmitSudoku}
+        />
+      </div>
     </div>
   );
 }

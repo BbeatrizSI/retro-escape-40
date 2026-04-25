@@ -12,7 +12,7 @@ export function EscapeRoomApp() {
   const game = useEscapeRoomGame();
 
   return (
-    <main className="relative min-h-dvh w-full bg-black text-[17px] text-[#7fff75]">
+    <main className="relative h-dvh max-h-dvh min-h-0 w-full overflow-hidden bg-black text-[17px] text-[#7fff75]">
       <VisualBackdrop />
       <WinCelebration active={game.showConfetti} />
 
@@ -20,37 +20,39 @@ export function EscapeRoomApp() {
         <GameShell>
           <AppHeader />
 
-          {!game.started ? (
-            <WelcomePanel onStart={game.startGame} />
-          ) : game.bootIndex < game.bootMessages.length ? (
-            <BootSequencePanel messages={game.bootMessages} visibleCount={game.bootIndex} />
-          ) : game.currentChallenge ? (
-            <ScheduleGate step={game.step} challenge={game.currentChallenge}>
-              <GamePlayScreen
-                challenge={game.currentChallenge}
-                gameStep={game.step}
-                progressPct={game.progress}
-                feedback={game.feedback}
-                feedbackTone={game.feedbackTone}
-                input={game.input}
-                onInputChange={game.setInput}
-                onSubmitMood={game.checkMoodAnswer}
-                onConfirmMood={game.confirmMoodAndAdvance}
-                selectedMood={game.selectedMood}
-                onSubmitText={game.checkTextAnswer}
-                onSubmitSudoku={game.checkSudoku}
-                onSubmitSequence={game.checkSequenceAnswer}
-                isMood={game.isMoodStep}
-                isSudoku={game.isSudokuStep}
-                isSequence={game.isSequenceStep}
-                sudokuGrid={game.sudokuGrid}
-                fixedMask={game.fixedMask}
-                onSudokuCellChange={game.onSudokuCellChange}
-                sudokuTimerActive={game.sudokuTimerActive}
-                sudokuSecondsLeft={game.sudokuSecondsLeft}
-              />
-            </ScheduleGate>
-          ) : null}
+          <div className="flex min-h-0 flex-1 flex-col">
+            {!game.started ? (
+              <WelcomePanel onStart={game.startGame} />
+            ) : game.bootIndex < game.bootMessages.length ? (
+              <BootSequencePanel messages={game.bootMessages} visibleCount={game.bootIndex} />
+            ) : game.currentChallenge ? (
+              <ScheduleGate step={game.step} challenge={game.currentChallenge}>
+                <GamePlayScreen
+                  challenge={game.currentChallenge}
+                  gameStep={game.step}
+                  progressPct={game.progress}
+                  feedback={game.feedback}
+                  feedbackTone={game.feedbackTone}
+                  input={game.input}
+                  onInputChange={game.setInput}
+                  onSubmitMood={game.checkMoodAnswer}
+                  onConfirmMood={game.confirmMoodAndAdvance}
+                  selectedMood={game.selectedMood}
+                  onSubmitText={game.checkTextAnswer}
+                  onSubmitSudoku={game.checkSudoku}
+                  onSubmitSequence={game.checkSequenceAnswer}
+                  isMood={game.isMoodStep}
+                  isSudoku={game.isSudokuStep}
+                  isSequence={game.isSequenceStep}
+                  sudokuGrid={game.sudokuGrid}
+                  fixedMask={game.fixedMask}
+                  onSudokuCellChange={game.onSudokuCellChange}
+                  sudokuTimerActive={game.sudokuTimerActive}
+                  sudokuSecondsLeft={game.sudokuSecondsLeft}
+                />
+              </ScheduleGate>
+            ) : null}
+          </div>
         </GameShell>
       ) : null}
     </main>
