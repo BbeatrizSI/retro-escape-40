@@ -67,7 +67,10 @@ export function WinCelebration({ active }: Props) {
             <span className="font-bold">Mira lo que se está cociendo en el horno</span>
           </p>
           <p className="mt-2 text-sm text-[#7fff75]/75">
-            Mision completada por la reina de la casa, planos perfectos y economía con estilo.
+            ¡Misión completada!
+          </p>
+          <p className="mt-2 text-2xl text-[#7fff75]/75">
+            Te queremos
           </p>
         </div>
       </div>
