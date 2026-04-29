@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import type { Challenge } from "../game/types";
 import { AnswerFooter } from "./AnswerFooter";
 import { ChallengePromptPanel } from "./ChallengePromptPanel";
@@ -5,6 +6,7 @@ import { MoodChallengePanel } from "./MoodChallengePanel";
 import { ProgressStrip } from "./ProgressStrip";
 import { SequenceChallengePanel } from "./SequenceChallengePanel";
 import { SudokuBoard } from "./SudokuBoard";
+import { WordSearchPanel } from "./WordSearchPanel";
 
 type Props = {
   challenge: Challenge;
@@ -20,9 +22,12 @@ type Props = {
   onSubmitText: () => void;
   onSubmitSudoku: () => void;
   onSubmitSequence: (value: number) => void;
+  onWordSearchEndpoints: (a: { r: number; c: number }, b: { r: number; c: number }) => void;
+  wordSearchFoundIds: string[];
   isMood: boolean;
   isSudoku: boolean;
   isSequence: boolean;
+  isWordSearch: boolean;
   sudokuGrid: number[];
   fixedMask: boolean[];
   onSudokuCellChange: (index: number, raw: string) => void;
@@ -44,9 +49,12 @@ export function GamePlayScreen({
   onSubmitText,
   onSubmitSudoku,
   onSubmitSequence,
+  onWordSearchEndpoints,
+  wordSearchFoundIds,
   isMood,
   isSudoku,
   isSequence,
+  isWordSearch,
   sudokuGrid,
   fixedMask,
   onSudokuCellChange,
@@ -56,6 +64,8 @@ export function GamePlayScreen({
   const timerLabel = isSudoku
     ? `Tiempo: ${sudokuTimerActive ? sudokuSecondsLeft : 60}s max`
     : null;
+
+  const wordSearchFoundSet = useMemo(() => new Set(wordSearchFoundIds), [wordSearchFoundIds]);
 
   return (
     <div className="relative z-20 flex min-h-0 flex-1 flex-col">
@@ -79,6 +89,14 @@ export function GamePlayScreen({
             onSelectOption={onSubmitSequence}
           />
         ) : null}
+        {isWordSearch && challenge.kind === "wordsearch" ? (
+          <WordSearchPanel
+            rows={challenge.rows}
+            words={challenge.words}
+            foundIds={wordSearchFoundSet}
+            onSelectEndpoints={onWordSearchEndpoints}
+          />
+        ) : null}
         {isSudoku ? <SudokuBoard grid={sudokuGrid} fixedMask={fixedMask} onCellChange={onSudokuCellChange} /> : null}
         <p
           className={`min-h-6 whitespace-pre-wrap text-sm ${feedbackTone === "alert" ? "text-red-300" : "text-[#7fff75]/90"}`}
@@ -88,7 +106,9 @@ export function GamePlayScreen({
       </div>
       <div className="shrink-0 border-t border-[#7fff75]/25 bg-black/90 pt-2 shadow-[0_-10px_28px_rgba(0,0,0,0.55)] backdrop-blur-md">
         <AnswerFooter
-          mode={isSudoku ? "sudoku" : isSequence ? "sequence" : isMood ? "mood" : "text"}
+          mode={
+            isSudoku ? "sudoku" : isSequence ? "sequence" : isWordSearch ? "wordsearch" : isMood ? "mood" : "text"
+          }
           gameStep={gameStep}
           input={input}
           onInputChange={onInputChange}

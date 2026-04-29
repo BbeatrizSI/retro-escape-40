@@ -31,4 +31,27 @@ export type SequenceChallenge = {
   answer: number;
 };
 
-export type Challenge = MoodChallenge | TextChallenge | SequenceChallenge | SudokuChallenge;
+export type WordSearchWord = {
+  id: string;
+  label: string;
+  r0: number;
+  c0: number;
+  r1: number;
+  c1: number;
+};
+
+export type WordSearchChallenge = {
+  kind: "wordsearch";
+  title: string;
+  prompt: string;
+  hint: string;
+  rows: string[];
+  words: WordSearchWord[];
+};
+
+export type Challenge =
+  | MoodChallenge
+  | TextChallenge
+  | WordSearchChallenge
+  | SequenceChallenge
+  | SudokuChallenge;

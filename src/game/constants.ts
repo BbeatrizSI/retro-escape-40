@@ -45,6 +45,9 @@ export const MATRIX_STREAMS = [
   "MODEM_9600"
 ];
 
+/** Mensaje tras superar el reto 3 (índice 2). */
+export const POST_RETO_3_MESSAGE = "Mira debajo de la almohada";
+
 export const SUDOKU_SIZE = 6;
 
 /** Pistas reducidas respecto al puzzle anterior; misma solución única que SUDOKU_SOLUTION. */
@@ -64,28 +67,54 @@ export const CHALLENGES: Challenge[] = [
     options: ["Fenomenal", "Bastante bien", "Regular", "Podría estar mejor", "Fatal"]
   },
   {
-    kind: "text",
-    title: "RETO 2 - Arquitecta del hogar",
-    prompt: "Si toca reforma en casa, quién manda en planos y decisiones?",
-    acceptedAnswers: ["yo", "lara", "todas", "todos", "barbara", "bárbara"],
-    hint: "Pista: piensa en quién tiene la última palabra."
+    kind: "wordsearch",
+    title: "RETO 2 - Sopa de letras",
+    prompt:
+      "Encuentra las 7 palabras. Toca la primera y la última letra de cada una en línea recta: horizontal, vertical o diagonal. Vale en orden normal o al revés.",
+    hint: "Pista: cocina, familia y un poco de troleo cariñoso.",
+    rows: [
+      "OQWXZKPVBJDFAHM",
+      "RYQWPXZKPVBJDDF",
+      "EHMYQRWXZKPVRBJ",
+      "GDFHMYOQWXZKIPV",
+      "ABJDFHMTYQWXAZK",
+      "NPVBJDFHEMYQNWX",
+      "OZKPVBJDFIHMAYQ",
+      "WXZKPVBJDFNHMYQ",
+      "CHOCOLATEWXAZKP",
+      "VFBJDFHMYQWXSZK",
+      "PVEBJDFMALASANA",
+      "HMYLQWXZKPVBJDF",
+      "HMYQIWXZCUCHIKP",
+      "VBJDFPHMYQWXZKP",
+      "VBJDFHEMYQWXZKP"
+    ],
+    words: [
+      { id: "oregano", label: "Orégano", r0: 0, c0: 0, r1: 6, c1: 0 },
+      { id: "adriana", label: "Adriana", r0: 0, c0: 12, r1: 6, c1: 12 },
+      { id: "chocolate", label: "Chocolate", r0: 8, c0: 0, r1: 8, c1: 8 },
+      { id: "proteinas", label: "Proteínas", r0: 1, c0: 4, r1: 9, c1: 12 },
+      { id: "felipe", label: "Felipe", r0: 9, c0: 1, r1: 14, c1: 6 },
+      { id: "malasana", label: "Malasaña", r0: 10, c0: 7, r1: 10, c1: 14 },
+      { id: "cuchi", label: "Cuchi", r0: 12, c0: 8, r1: 12, c1: 12 }
+    ]
   },
   {
     kind: "text",
     title: "RETO 3 - Color secreto",
     prompt: "¿Qué nombre le pondrías al siguiente color?",
     swatchColor: "#C9E82A",
-    acceptedAnswers: ["verde", "verde lima", "nuestro coche"],
+    acceptedAnswers: ["verde", "verde lima", "nuestro coche", "lime green"],
     hint: "Solo diré que NO es amarillo"
   },
   {
     kind: "sequence",
     title: "RETO 4 - Serie lógica turbo",
-    prompt: "Completa la serie: 2, 6, 12, 20, 30, ...",
-    sequence: [2, 6, 12, 20, 30],
-    options: [36, 40, 42, 48],
-    answer: 42,
-    hint: "Pista: se multiplica y también crece el salto."
+    prompt: "Completa la serie: 2, 5, 10, 17, 26, ...",
+    sequence: [2, 5, 10, 17, 26],
+    options: [35, 37, 33, 39],
+    answer: 37,
+    hint: "Pista: mira cuánto sumas cada vez para llegar al siguiente número."
   },
   {
     kind: "text",

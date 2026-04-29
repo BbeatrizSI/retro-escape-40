@@ -6,8 +6,10 @@ export function WelcomePanel({ onStart }: Props) {
   return (
     <div className="relative z-20 flex min-h-0 flex-1 flex-col justify-center space-y-4 overflow-y-auto overscroll-contain py-2">
       <p className="rounded-lg border border-[#7fff75]/45 bg-black/75 p-3 leading-relaxed backdrop-blur-sm">
-        Bienvenida, agente especial. Para desbloquear tu sorpresa, activa el sistema retro y supera unos retos con un poco de 
-        humor. Los retos se abren a horas concretas del día; el último llega a las 19:00.
+        <p>Bienvenida, agente especial. Para desbloquear tu sorpresa, activa el sistema retro y supera unos retos con un poco de 
+        humor.</p>
+        <p>Los retos se abren a horas concretas del día.</p>
+        <p>El último llega a las <span className="font-bold text-amber-300">20:15</span>.</p>
       </p>
       <p className="text-xs leading-relaxed text-[#7fff75]/65">
         Puedes instalar la web como app: en Chrome/Android, menú &quot;Añadir a pantalla de inicio&quot;.

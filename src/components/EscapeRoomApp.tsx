@@ -5,6 +5,7 @@ import { GamePlayScreen } from "./GamePlayScreen";
 import { GameShell } from "./GameShell";
 import { VisualBackdrop } from "./VisualBackdrop";
 import { ScheduleGate } from "./ScheduleGate";
+import { PillowMessageModal } from "./PillowMessageModal";
 import { WelcomePanel } from "./WelcomePanel";
 import { WinCelebration } from "./WinCelebration";
 
@@ -14,6 +15,7 @@ export function EscapeRoomApp() {
   return (
     <main className="relative h-dvh max-h-dvh min-h-0 w-full overflow-hidden bg-black text-[17px] text-[#7fff75]">
       <VisualBackdrop />
+      <PillowMessageModal open={game.pillowMessageOpen} onOk={game.acknowledgePillowMessage} />
       <WinCelebration active={game.showConfetti} />
 
       {!game.showConfetti ? (
@@ -41,9 +43,12 @@ export function EscapeRoomApp() {
                   onSubmitText={game.checkTextAnswer}
                   onSubmitSudoku={game.checkSudoku}
                   onSubmitSequence={game.checkSequenceAnswer}
+                  onWordSearchEndpoints={game.submitWordSearchEndpoints}
+                  wordSearchFoundIds={game.wordSearchFoundIds}
                   isMood={game.isMoodStep}
                   isSudoku={game.isSudokuStep}
                   isSequence={game.isSequenceStep}
+                  isWordSearch={game.isWordSearchStep}
                   sudokuGrid={game.sudokuGrid}
                   fixedMask={game.fixedMask}
                   onSudokuCellChange={game.onSudokuCellChange}

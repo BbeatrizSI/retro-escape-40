@@ -5,12 +5,12 @@ import { CHALLENGES } from "./constants";
  * Ajusta aquí el día del evento: el primero suele ser “tras despertar”, el último 19:00.
  */
 export const STEP_UNLOCK_LOCAL: readonly string[] = [
-  "09:00",
-  "11:00",
+  "07:00",
+  "10:00",
   "14:00",
   "16:00",
   "18:00",
-  "19:00"
+  "20:15"
 ];
 
 function assertScheduleLength() {

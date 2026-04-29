@@ -5,7 +5,7 @@ const RETO_4_STEP_INDEX = 4;
 const OK_DODGES_BEFORE_SUBMIT = 2;
 
 type Props = {
-  mode: "text" | "mood" | "sequence" | "sudoku";
+  mode: "text" | "mood" | "sequence" | "sudoku" | "wordsearch";
   input: string;
   onInputChange: (v: string) => void;
   canConfirmMood?: boolean;
@@ -79,6 +79,11 @@ export function AnswerFooter({
       ) : mode === "sequence" ? (
         <p className="rounded-lg border border-[#7fff75]/30 bg-black/60 px-3 py-2 text-sm text-[#7fff75]/85">
           Elige una opción para completar la serie lógica.
+        </p>
+      ) : mode === "wordsearch" ? (
+        <p className="rounded-lg border border-[#7fff75]/30 bg-black/60 px-3 py-2 text-sm text-[#7fff75]/85">
+          Toca los dos extremos de cada palabra en línea recta: horizontal, vertical o diagonal. Puedes marcar del
+          principio al final o al revés.
         </p>
       ) : (
         <div className="space-y-2">
